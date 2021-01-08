@@ -52,7 +52,44 @@ function generateMarkdown(data) {
   
   return `# ${data.title}
 
-`;
+## Description
+
+License badge here
+Description text here
+
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Tests](#tests)
+* [Questions](#questions)
+
+## <a name="installation"></a> Installation
+
+Installation Instructions Here
+
+## <a name="usage"></a> Usage
+
+Usage Information Here
+
+## <a name="license"></a> License
+
+Notice of which license this application is covered by here
+
+## <a name="contributing"></a> Contributing
+
+Contribution guidelines here
+
+## <a name="tests"></a> Tests
+
+Test Instructions here
+
+## <a name="questions"></a> Questions
+
+Link to GitHub Profile based on GitHub UserName here
+
+Instructions on contact with provided email here`;
 }
 
 module.exports = {
