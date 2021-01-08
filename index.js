@@ -4,7 +4,10 @@ const generator = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [];
-const fileName = 'test.txt';
+const data = {
+    title: 'New ReadMe MarkDown',
+  
+  }
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
@@ -15,14 +18,17 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    generator.generateMarkdown();
+    console.log(generator.generateMarkdown(data));
 }
 
+init();
+
 // Function call to initialize app
-const initiate = new Promise((resolve, reject) => {
-    init();
-    resolve('Success');
-});
-initiate.then((response) => {
-    writeToFile('test.txt', response);
-})
+// const initiate = new Promise((resolve, reject) => {
+//     readMe = init();
+//     resolve('Success');
+// });
+
+// initiate.then((response) => {
+//     writeToFile('test.txt', readMe);
+// })
