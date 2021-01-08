@@ -48,6 +48,7 @@ function renderLicenseSection(license) {}
 function generateMarkdown() {
 // function generateMarkdown(data) {
   selectSections();
+  return 'success';
 //   return `# ${data.title}
 
 // `;
