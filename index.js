@@ -18,7 +18,7 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    console.log(generator.generateMarkdown(data));
+    writeToFile('text.txt', generator.generateMarkdown(data));
 }
 
 init();
