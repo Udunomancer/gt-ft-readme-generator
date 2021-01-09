@@ -29,8 +29,24 @@ async function setDescription() {
       resolve(`## Description
       
 ${response.setDescription}
-      
       `)
+    })
+  })
+}
+
+async function setInstallation() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "setInstallation",
+        message: "Please provide installation instructions for your application."
+      }
+    ]).then((response) => {
+      console.log("Installation Section Set");
+      resolve(`## <a name="installation"></a> Installation
+
+${response.setInstallation}`)
     })
   })
 }
@@ -99,9 +115,7 @@ ${data.description}
 * [Tests](#tests)
 * [Questions](#questions)
 
-## <a name="installation"></a> Installation
-
-Installation Instructions Here
+${data.installation}
 
 ## <a name="usage"></a> Usage
 
@@ -129,6 +143,7 @@ Instructions on contact with provided email here`;
 module.exports = {
   setTitle,
   setDescription,
+  setInstallation,
   selectSections,
   generateMarkdown
 };

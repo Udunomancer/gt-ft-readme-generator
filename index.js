@@ -15,6 +15,8 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 async function init() {
+
+    //set the title
     data.title = await generator.setTitle();
     questions = await generator.selectSections();
     console.log(questions);
@@ -22,7 +24,7 @@ async function init() {
         data.description = await generator.setDescription();
     }
     if(questions.indexOf('Table of Contents') >= 0) {
-        console.log('Add Table of Contents');
+        data.installation = await generator.setInstallation();
     }
     if(questions.indexOf('Installation') >= 0) {
         console.log('Add Installation');
