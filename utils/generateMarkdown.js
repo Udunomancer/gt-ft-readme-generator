@@ -34,6 +34,10 @@ ${response.setDescription}
   })
 }
 
+function directory() {
+  // if Description > run description
+}
+
 async function setInstallation() {
   return new Promise(function(resolve, reject) {
     inquirer.prompt([
@@ -64,6 +68,44 @@ async function setUsage() {
       resolve(`## <a name="usage"></a> Usage
 
 ${response.setUsage}`)
+    })
+  })
+}
+
+async function setLicense() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "list",
+        name: "setLicense",
+        message: "What license should your application be covered under?",
+        choices: [
+          "Boost Software License",
+          "IBM Public License Version 1.0",
+          "The MIT License"         
+        ]
+      }
+    ]).then((response) => {
+      console.log("License Set.");
+      switch (response.setLicense) {
+        case "Boost Software License": 
+          resolve({
+            badge: `[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`,
+            link: `[${response.setLicense}](https://www.boost.org/LICENSE_1_0.txt)`
+          })
+        case "IBM Public License Version 1.0":
+          resolve({
+            badge: `[![License: IPL 1.0](https://img.shields.io/badge/License-IPL%201.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)`,
+            link: `[${response.setLicense}](https://opensource.org/licenses/IPL-1.0)`
+          })
+        case "The MIT License":
+          resolve({
+            badge: `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`,
+            link: `[${response.setLicense}](https://opensource.org/licenses/MIT)`
+          })
+        default:
+          reject("Error selecting license type");
+      }
     })
   })
 }
@@ -140,6 +182,7 @@ async function selectSections() {
             "Table of Contents",
             "Installation",
             "Usage",
+            "License",
             "Contributing",
             "Tests",
             "Questions"
@@ -149,6 +192,7 @@ async function selectSections() {
             "Table of Contents",
             "Installation",
             "Usage",
+            "License",
             "Contributing",
             "Tests",
             "Questions"
@@ -197,7 +241,7 @@ ${data.usage}
 
 ## <a name="license"></a> License
 
-Notice of which license this application is covered by here
+${data.license.link}
 
 ${data.contribution}
 
@@ -211,6 +255,7 @@ module.exports = {
   setDescription,
   setInstallation,
   setUsage,
+  setLicense,
   setContribution,
   setTests,
   setQuestion,

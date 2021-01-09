@@ -32,6 +32,9 @@ async function init() {
     if(questions.indexOf('Usage') >= 0) {
         data.usage = await generator.setUsage();
     }
+    if(questions.indexOf('License') >= 0) {
+        data.license = await generator.setLicense();
+    }
     if(questions.indexOf('Contributing') >= 0) {
         data.contribution = await generator.setContribution();
     }
