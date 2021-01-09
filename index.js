@@ -36,7 +36,10 @@ async function init() {
         data.contribution = await generator.setContribution();
     }
     if(questions.indexOf('Tests') >= 0) {
-        console.log('Tests');
+        data.tests = await generator.setTests();
+    }
+    if(questions.indexOf('Questions') >= 0) {
+        data.questions = await generator.setQuestion();
     }
     writeToFile('text.txt', generator.generateMarkdown(data));
 }

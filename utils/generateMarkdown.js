@@ -85,6 +85,46 @@ ${response.setContribution}`)
   })
 }
 
+async function setTests() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "setTests",
+        message: "Provide any tests needed to verify functionality of your application."
+      }
+    ]).then((response) => {
+      console.log("Tests Section Set.");
+      resolve(`## <a name="tests"></a> Tests
+
+${response.setTests}`)
+    })
+  })
+}
+
+async function setQuestion() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "gitHub",
+        message: "Provide your EXACT GitHub username (This will be used to create a link to your GitHub profile)."
+      },{
+        type: "input",
+        name: "email",
+        message: "Provide email to reach you by."
+      }
+    ]).then((response) => {
+      console.log("Contact Details for Question Section Set.");
+      resolve(`## <a name="questions"></a> Questions
+
+Have questions?
+* View my GitHub Profile: [https://github.com/${response.gitHub}](https://github.com/${response.gitHub})
+* Email me at: [${response.email}](mailto:${response.email})`)
+    })
+  })
+}
+
 // determine what sections to add to ReadMe
 async function selectSections() {
   return new Promise(function(resolve, reject) {
@@ -102,6 +142,7 @@ async function selectSections() {
             "Usage",
             "Contributing",
             "Tests",
+            "Questions"
           ],
           default: [
             "Description",
@@ -110,6 +151,7 @@ async function selectSections() {
             "Usage",
             "Contributing",
             "Tests",
+            "Questions"
           ],
         }
       ]).then((response) => {
@@ -159,13 +201,9 @@ Notice of which license this application is covered by here
 
 ${data.contribution}
 
-Test Instructions here
+${data.tests}
 
-## <a name="questions"></a> Questions
-
-Link to GitHub Profile based on GitHub UserName here
-
-Instructions on contact with provided email here`;
+${data.questions}`;
 }
 
 module.exports = {
@@ -174,6 +212,8 @@ module.exports = {
   setInstallation,
   setUsage,
   setContribution,
+  setTests,
+  setQuestion,
   selectSections,
   generateMarkdown
 };
