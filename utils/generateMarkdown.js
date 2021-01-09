@@ -1,36 +1,38 @@
 const inquirer = require('inquirer');
 
 // First Question, determine what sections to add to ReadMe
-// function selectSections() {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "checkbox",
-//         name: "chooseSections",
-//         message:
-//           "What sections will you need in your ReadMe? (By Default, all sections are selected)",
-//         choices: [
-//           "Description",
-//           "Table of Contents",
-//           "Installation",
-//           "Usage",
-//           "Contributing",
-//           "Tests",
-//         ],
-//         default: [
-//           "Description",
-//           "Table of Contents",
-//           "Installation",
-//           "Usage",
-//           "Contributing",
-//           "Tests",
-//         ],
-//       },
-//     ])
-//     .then((response) => {
-//       return response.chooseSections;
-//     });
-// }
+async function selectSections() {
+  return new Promise(function(resolve, reject) {
+    inquirer
+      .prompt([
+        {
+          type: "checkbox",
+          name: "chooseSections",
+          message:
+            "What sections will you need in your ReadMe? (By Default, all sections are selected)",
+          choices: [
+            "Description",
+            "Table of Contents",
+            "Installation",
+            "Usage",
+            "Contributing",
+            "Tests",
+          ],
+          default: [
+            "Description",
+            "Table of Contents",
+            "Installation",
+            "Usage",
+            "Contributing",
+            "Tests",
+          ],
+        }
+      ]).then((response) => {
+        console.log("Sections Selected");
+        resolve(response.chooseSections);
+      });
+    });
+}
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
@@ -93,5 +95,6 @@ Instructions on contact with provided email here`;
 }
 
 module.exports = {
+  selectSections,
   generateMarkdown
 };
