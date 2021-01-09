@@ -24,16 +24,16 @@ async function init() {
         data.description = await generator.setDescription();
     }
     if(questions.indexOf('Table of Contents') >= 0) {
-        data.installation = await generator.setInstallation();
+        console.log('Table of Contents');
     }
     if(questions.indexOf('Installation') >= 0) {
-        console.log('Add Installation');
+        data.installation = await generator.setInstallation();
     }
     if(questions.indexOf('Usage') >= 0) {
-        console.log('Usage');
+        data.usage = await generator.setUsage();
     }
     if(questions.indexOf('Contributing') >= 0) {
-        console.log('Contributing');
+        data.contribution = await generator.setContribution();
     }
     if(questions.indexOf('Tests') >= 0) {
         console.log('Tests');

@@ -51,6 +51,40 @@ ${response.setInstallation}`)
   })
 }
 
+async function setUsage() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "setUsage",
+        message: "Please provide usage instrucions for your application."
+      }
+    ]).then((response) => {
+      console.log("Usage Section Set.");
+      resolve(`## <a name="usage"></a> Usage
+
+${response.setUsage}`)
+    })
+  })
+}
+
+async function setContribution() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "setContribution",
+        message: "Please provide contribution guidelines for this application."
+      }
+    ]).then((response) => {
+      console.log("Contribution Section Set.");
+      resolve(`## <a name="contributing"></a> Contributing
+
+${response.setContribution}`)
+    })
+  })
+}
+
 // determine what sections to add to ReadMe
 async function selectSections() {
   return new Promise(function(resolve, reject) {
@@ -117,19 +151,13 @@ ${data.description}
 
 ${data.installation}
 
-## <a name="usage"></a> Usage
-
-Usage Information Here
+${data.usage}
 
 ## <a name="license"></a> License
 
 Notice of which license this application is covered by here
 
-## <a name="contributing"></a> Contributing
-
-Contribution guidelines here
-
-## <a name="tests"></a> Tests
+${data.contribution}
 
 Test Instructions here
 
@@ -144,6 +172,8 @@ module.exports = {
   setTitle,
   setDescription,
   setInstallation,
+  setUsage,
+  setContribution,
   selectSections,
   generateMarkdown
 };
