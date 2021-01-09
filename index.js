@@ -19,7 +19,7 @@ async function init() {
     questions = await generator.selectSections();
     console.log(questions);
     if(questions.indexOf('Description') >= 0) {
-        console.log('Add Description');
+        data.description = await generator.setDescription();
     }
     if(questions.indexOf('Table of Contents') >= 0) {
         console.log('Add Table of Contents');

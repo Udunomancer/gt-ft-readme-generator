@@ -16,6 +16,25 @@ async function setTitle() {
   });
 }
 
+async function setDescription() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "setDescription",
+        message: "Please describe your application."
+      }
+    ]).then((response) => {
+      console.log("Description Set");
+      resolve(`## Description
+      
+${response.setDescription}
+      
+      `)
+    })
+  })
+}
+
 // determine what sections to add to ReadMe
 async function selectSections() {
   return new Promise(function(resolve, reject) {
@@ -70,10 +89,7 @@ function generateMarkdown(data) {
   
   return `# ${data.title}
 
-## Description
-
-License badge here
-Description text here
+${data.description}
 
 ## Table of Contents
 * [Installation](#installation)
@@ -112,6 +128,7 @@ Instructions on contact with provided email here`;
 
 module.exports = {
   setTitle,
+  setDescription,
   selectSections,
   generateMarkdown
 };
