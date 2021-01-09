@@ -1,6 +1,22 @@
 const inquirer = require('inquirer');
 
-// First Question, determine what sections to add to ReadMe
+// Set the title of the application
+async function setTitle() {
+  return new Promise(function(resolve, reject) {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "setTitle",
+        message: "What is the title of your application?",
+      }
+    ]).then((response) => {
+      console.log("Application Title Set");
+      resolve(response.setTitle);
+    });
+  });
+}
+
+// determine what sections to add to ReadMe
 async function selectSections() {
   return new Promise(function(resolve, reject) {
     inquirer
@@ -95,6 +111,7 @@ Instructions on contact with provided email here`;
 }
 
 module.exports = {
+  setTitle,
   selectSections,
   generateMarkdown
 };

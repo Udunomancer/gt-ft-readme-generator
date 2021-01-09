@@ -4,9 +4,7 @@ const generator = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 let questions;
-const data = {
-    title: 'New ReadMe MarkDown',
-}
+const data = {}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
@@ -17,24 +15,28 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 async function init() {
-
+    data.title = await generator.setTitle();
     questions = await generator.selectSections();
-    
-    // const sections = new Promise(function(resolve, reject) {
-    //     generator.selectSections();
-    //     if (questions) {
-    //         resolve("ReadMe Sections Selected");
-    //     } else {
-    //         reject(Error("Error selecting ReadMe sections"))
-    //     }
-    // });
-    // sections.then(function(result) {
-    //     console.log(result);
-    //     console.log(questions);
-    // }, function(err) {
-    //     console.log(err);
-    // });
-    //writeToFile('text.txt', generator.generateMarkdown(data));
+    console.log(questions);
+    if(questions.indexOf('Description') >= 0) {
+        console.log('Add Description');
+    }
+    if(questions.indexOf('Table of Contents') >= 0) {
+        console.log('Add Table of Contents');
+    }
+    if(questions.indexOf('Installation') >= 0) {
+        console.log('Add Installation');
+    }
+    if(questions.indexOf('Usage') >= 0) {
+        console.log('Usage');
+    }
+    if(questions.indexOf('Contributing') >= 0) {
+        console.log('Contributing');
+    }
+    if(questions.indexOf('Tests') >= 0) {
+        console.log('Tests');
+    }
+    writeToFile('text.txt', generator.generateMarkdown(data));
 }
 
 
