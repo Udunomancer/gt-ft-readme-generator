@@ -4,7 +4,7 @@ const generator = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 let questions;
-const data = {}
+let data = {}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
@@ -16,34 +16,53 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 async function init() {
 
+    data = await generator.promptAndReturn();
     //set the title
-    data.title = await generator.setTitle();
-    questions = await generator.selectSections();
-    console.log(questions);
-    if(questions.indexOf('Description') >= 0) {
-        data.description = await generator.setDescription();
-    }
-    if(questions.indexOf('Table of Contents') >= 0) {
-        console.log('Table of Contents');
-    }
-    if(questions.indexOf('Installation') >= 0) {
-        data.installation = await generator.setInstallation();
-    }
-    if(questions.indexOf('Usage') >= 0) {
-        data.usage = await generator.setUsage();
-    }
-    if(questions.indexOf('License') >= 0) {
-        data.license = await generator.setLicense();
-    }
-    if(questions.indexOf('Contributing') >= 0) {
-        data.contribution = await generator.setContribution();
-    }
-    if(questions.indexOf('Tests') >= 0) {
-        data.tests = await generator.setTests();
-    }
-    if(questions.indexOf('Questions') >= 0) {
-        data.questions = await generator.setQuestion();
-    }
+    // data.title = await generator.setTitle();
+    // questions = await generator.selectSections();
+    // console.log(questions);
+    // if(questions.indexOf('Table of Contents') >= 0) {
+    //     data.contents = '## Table of Contents';
+    // }
+    // if(questions.indexOf('Description') >= 0) {
+    //     data.description = await generator.setDescription();
+    // }
+    // if(questions.indexOf('Installation') >= 0) {
+    //     data.installation = await generator.setInstallation();
+    //     if(data.contents) {
+    //         data.contents = data.contents + '\n* [Installation](#installation)';
+    //     }
+    // }
+    // if(questions.indexOf('Usage') >= 0) {
+    //     data.usage = await generator.setUsage();
+    //     if(data.contents) {
+    //         data.contents = data.contents + '\n* [Usage](#usage)';
+    //     }
+    // }
+    // if(questions.indexOf('License') >= 0) {
+    //     data.license = await generator.setLicense();
+    //     if(data.contents) {
+    //         data.contents = data.contents + '\n* [License](#license)';
+    //     }
+    // }
+    // if(questions.indexOf('Contributing') >= 0) {
+    //     data.contribution = await generator.setContribution();
+    //     if(data.contents) {
+    //         data.contents = data.contents + '\n* [Contributing](#contributing)';
+    //     }
+    // }
+    // if(questions.indexOf('Tests') >= 0) {
+    //     data.tests = await generator.setTests();
+    //     if(data.contents) {
+    //         data.contents = data.contents + '\n* [Tests](#tests)';
+    //     }
+    // }
+    // if(questions.indexOf('Questions') >= 0) {
+    //     data.questions = await generator.setQuestion();
+    //     if(data.contents) {
+    //         data.contents = data.contents + '\n* [Questions](#questions)';
+    //     }
+    // }
     writeToFile('text.txt', generator.generateMarkdown(data));
 }
 

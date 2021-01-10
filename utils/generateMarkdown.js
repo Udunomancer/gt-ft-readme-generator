@@ -1,5 +1,59 @@
 const inquirer = require('inquirer');
 
+async function promptAndReturn() {
+  // if Description > run description
+  const tempData = {};
+
+  tempData.title = await setTitle();
+
+  questions = await selectSections();
+
+  if(questions.indexOf('Table of Contents') >= 0) {
+    tempData.contents = '## Table of Contents';
+  }
+  if(questions.indexOf('Description') >= 0) {
+    tempData.description = await setDescription();
+  }
+  if(questions.indexOf('Installation') >= 0) {
+      tempData.installation = await setInstallation();
+      if(tempData.contents) {
+        tempData.contents = tempData.contents + '\n* [Installation](#installation)';
+      }
+  }
+  if(questions.indexOf('Usage') >= 0) {
+      tempData.usage = await setUsage();
+      if(tempData.contents) {
+        tempData.contents = tempData.contents + '\n* [Usage](#usage)';
+      }
+  }
+  if(questions.indexOf('License') >= 0) {
+      tempData.license = await setLicense();
+      if(tempData.contents) {
+        tempData.contents = tempData.contents + '\n* [License](#license)';
+      }
+  }
+  if(questions.indexOf('Contributing') >= 0) {
+      tempData.contribution = await setContribution();
+      if(tempData.contents) {
+        tempData.contents = tempData.contents + '\n* [Contributing](#contributing)';
+      }
+  }
+  if(questions.indexOf('Tests') >= 0) {
+      tempData.tests = await setTests();
+      if(tempData.contents) {
+        tempData.contents = tempData.contents + '\n* [Tests](#tests)';
+      }
+  }
+  if(questions.indexOf('Questions') >= 0) {
+      tempData.questions = await setQuestion();
+      if(tempData.contents) {
+          tempData.contents = tempData.contents + '\n* [Questions](#questions)';
+      }
+  }
+
+  return tempData;
+}
+
 // Set the title of the application
 async function setTitle() {
   return new Promise(function(resolve, reject) {
@@ -32,10 +86,6 @@ ${response.setDescription}
       `)
     })
   })
-}
-
-function directory() {
-  // if Description > run description
 }
 
 async function setInstallation() {
@@ -227,13 +277,7 @@ function generateMarkdown(data) {
 
 ${data.description}
 
-## Table of Contents
-* [Installation](#installation)
-* [Usage](#usage)
-* [License](#license)
-* [Contributing](#contributing)
-* [Tests](#tests)
-* [Questions](#questions)
+${data.contents}
 
 ${data.installation}
 
@@ -251,6 +295,7 @@ ${data.questions}`;
 }
 
 module.exports = {
+  promptAndReturn,
   setTitle,
   setDescription,
   setInstallation,
