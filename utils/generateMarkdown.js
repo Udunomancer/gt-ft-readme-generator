@@ -376,14 +376,5 @@ function generateMarkdown(data) {
 
 module.exports = {
   promptAndReturn,
-  setTitle,
-  setDescription,
-  setInstallation,
-  setUsage,
-  setLicense,
-  setContribution,
-  setTests,
-  setQuestion,
-  selectSections,
   generateMarkdown
 };

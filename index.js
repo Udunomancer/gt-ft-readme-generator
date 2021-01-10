@@ -23,12 +23,12 @@ async function init() {
 //Input: n/a
 //Output: n/a
 
+    //Prompt user to input data for ReadMe and save it
     data = await generator.promptAndReturn();
     
+    //Take the input and write it to the readme file
     writeToFile('GENERATED.md', generator.generateMarkdown(data));
 }
-
-
 
 // Calling init() to start functionality
 init();
