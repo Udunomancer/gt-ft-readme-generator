@@ -1,9 +1,9 @@
-# Readme Generator
+# ReadMe Generator
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 
-Test Description
+Enter description of application here
 
 ## Table of Contents
 * [Installation](#installation)
@@ -15,11 +15,11 @@ Test Description
 
 ## <a name="installation"></a> Installation
 
-Test Installation
+Enter Installation instructions here
 
 ## <a name="usage"></a> Usage
 
-Test Usage Instructions
+Enter usage instructions here
 
 ## <a name="license"></a> License
 
@@ -27,11 +27,11 @@ Test Usage Instructions
 
 ## <a name="contributing"></a> Contributing
 
-Test Contribution Guidelines
+Enter Contribution guidelines for application here
 
 ## <a name="tests"></a> Tests
 
-Test Tests
+Enter any tests for application here
 
 ## <a name="questions"></a> Questions
 
