@@ -5,7 +5,7 @@
 
 Application run from the command line to automatically generate ReadMe file based on user input.  Programmed in JavaScript, requires inquirer and fs packages.
 
-[Example Generated ReadMe](./GENERATED.md)
+[Example Generated ReadMe](./assets/GENERATED.md)
 
 ## Table of Contents
 * [Installation](#installation)
