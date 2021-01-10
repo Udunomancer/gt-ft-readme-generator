@@ -17,7 +17,7 @@ Application run from the command line to automatically generate ReadMe file base
 
 ## <a name="installation"></a> Installation
 
-* Fork from the GitHub Repository: [https://github.com/Udunomancer/gt-ft-readme-generator#questions](https://github.com/Udunomancer/gt-ft-readme-generator#questions)
+* Fork from the GitHub Repository: [https://github.com/Udunomancer/gt-ft-readme-generator](https://github.com/Udunomancer/gt-ft-readme-generator)
 * Ensure that node is available on device.
 * Install inquirer package using npm.
 
