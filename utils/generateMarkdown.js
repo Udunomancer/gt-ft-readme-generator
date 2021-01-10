@@ -100,7 +100,7 @@ async function setTitle() {
         message: "What is the title of your application?",
       }
     ]).then((response) => {
-      console.log("Application Title Set");
+      console.log("======\nApplication Title Set\n======");
       resolve(response.setTitle);
     });
   });
@@ -119,7 +119,7 @@ async function setDescription() {
         message: "Please describe your application."
       }
     ]).then((response) => {
-      console.log("Description Set");
+      console.log("======\nDescription Set\n======");
       resolve(response.setDescription)
     })
   })
@@ -138,7 +138,7 @@ async function setInstallation() {
         message: "Please provide installation instructions for your application."
       }
     ]).then((response) => {
-      console.log("Installation Section Set");
+      console.log("======\nInstallation Section Set\n======");
       resolve(response.setInstallation);
     })
   })
@@ -157,7 +157,7 @@ async function setUsage() {
         message: "Please provide usage instrucions for your application."
       }
     ]).then((response) => {
-      console.log("Usage Section Set.");
+      console.log("======\nUsage Section Set.\n======");
       resolve(response.setUsage);
     })
   })
@@ -181,7 +181,7 @@ async function setLicense() {
         ]
       }
     ]).then((response) => {
-      console.log("License Set.");
+      console.log("======\nLicense Set.\n======");
       switch (response.setLicense) {
         case "Boost Software License": 
           resolve({
@@ -218,7 +218,7 @@ async function setContribution() {
         message: "Please provide contribution guidelines for this application."
       }
     ]).then((response) => {
-      console.log("Contribution Section Set.");
+      console.log("======\nContribution Section Set.\n======");
       resolve(response.setContribution)
     })
   })
@@ -237,7 +237,7 @@ async function setTests() {
         message: "Provide any tests needed to verify functionality of your application."
       }
     ]).then((response) => {
-      console.log("Tests Section Set.");
+      console.log("======\nTests Section Set.\n======");
       resolve(response.setTests)
     })
   })
@@ -260,7 +260,7 @@ async function setQuestion() {
         message: "Provide email to reach you by."
       }
     ]).then((response) => {
-      console.log("Contact Details for Question Section Set.");
+      console.log("======\nContact Details for Question Section Set.\n======");
       resolve(`* View my GitHub Profile: [https://github.com/${response.gitHub}](https://github.com/${response.gitHub})`+'\n'+
 `* Email me at: [${response.email}](mailto:${response.email})`)
     })
@@ -302,7 +302,7 @@ async function selectSections() {
           ],
         }
       ]).then((response) => {
-        console.log("Sections Selected");
+        console.log("======\nSections Selected\n======");
         resolve(response.chooseSections);
       });
     });

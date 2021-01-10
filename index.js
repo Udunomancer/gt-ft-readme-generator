@@ -14,7 +14,7 @@ function writeToFile(fileName, data) {
 //Output: n/a
 
     fs.writeFile(fileName, data, (err) => {
-        err ? console.error(err) : console.log('README file successfully created.');
+        err ? console.error(err) : console.log('======\nREADME file successfully created.\n======');
     })
 }
 
