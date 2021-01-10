@@ -2,53 +2,63 @@ const inquirer = require('inquirer');
 
 async function promptAndReturn() {
   // if Description > run description
-  const tempData = {};
+  const tempData = {
+    listedSections: {}
+  };
 
   tempData.title = await setTitle();
 
   questions = await selectSections();
 
   if(questions.indexOf('Table of Contents') >= 0) {
+    tempData.listedSections.tableOfContents = true;
     tempData.contents = '## Table of Contents';
   }
   if(questions.indexOf('Description') >= 0) {
+    tempData.listedSections.description = true;
     tempData.description = await setDescription();
   }
   if(questions.indexOf('Installation') >= 0) {
-      tempData.installation = await setInstallation();
-      if(tempData.contents) {
-        tempData.contents = tempData.contents + '\n* [Installation](#installation)';
-      }
+    tempData.listedSections.installation = true;
+    tempData.installation = await setInstallation();
+    if(tempData.contents) {
+      tempData.contents = tempData.contents + '\n* [Installation](#installation)';
+    }
   }
   if(questions.indexOf('Usage') >= 0) {
-      tempData.usage = await setUsage();
-      if(tempData.contents) {
-        tempData.contents = tempData.contents + '\n* [Usage](#usage)';
-      }
+    tempData.listedSections.usage = true;
+    tempData.usage = await setUsage();
+    if(tempData.contents) {
+      tempData.contents = tempData.contents + '\n* [Usage](#usage)';
+    }
   }
   if(questions.indexOf('License') >= 0) {
-      tempData.license = await setLicense();
-      if(tempData.contents) {
-        tempData.contents = tempData.contents + '\n* [License](#license)';
-      }
+    tempData.listedSections.license = true;
+    tempData.license = await setLicense();
+    if(tempData.contents) {
+      tempData.contents = tempData.contents + '\n* [License](#license)';
+    }
   }
   if(questions.indexOf('Contributing') >= 0) {
-      tempData.contribution = await setContribution();
-      if(tempData.contents) {
-        tempData.contents = tempData.contents + '\n* [Contributing](#contributing)';
-      }
+    tempData.listedSections.contributing = true;
+    tempData.contribution = await setContribution();
+    if(tempData.contents) {
+      tempData.contents = tempData.contents + '\n* [Contributing](#contributing)';
+    }
   }
   if(questions.indexOf('Tests') >= 0) {
-      tempData.tests = await setTests();
-      if(tempData.contents) {
-        tempData.contents = tempData.contents + '\n* [Tests](#tests)';
-      }
+    tempData.listedSections.tests = true;
+    tempData.tests = await setTests();
+    if(tempData.contents) {
+      tempData.contents = tempData.contents + '\n* [Tests](#tests)';
+    }
   }
   if(questions.indexOf('Questions') >= 0) {
-      tempData.questions = await setQuestion();
-      if(tempData.contents) {
-          tempData.contents = tempData.contents + '\n* [Questions](#questions)';
-      }
+    tempData.listedSections.questions = true;
+    tempData.questions = await setQuestion();
+    if(tempData.contents) {
+        tempData.contents = tempData.contents + '\n* [Questions](#questions)';
+    }
   }
 
   return tempData;
@@ -80,10 +90,7 @@ async function setDescription() {
       }
     ]).then((response) => {
       console.log("Description Set");
-      resolve(`## Description
-      
-${response.setDescription}
-      `)
+      resolve(response.setDescription)
     })
   })
 }
@@ -98,9 +105,7 @@ async function setInstallation() {
       }
     ]).then((response) => {
       console.log("Installation Section Set");
-      resolve(`## <a name="installation"></a> Installation
-
-${response.setInstallation}`)
+      resolve(response.setInstallation);
     })
   })
 }
@@ -115,9 +120,7 @@ async function setUsage() {
       }
     ]).then((response) => {
       console.log("Usage Section Set.");
-      resolve(`## <a name="usage"></a> Usage
-
-${response.setUsage}`)
+      resolve(response.setUsage);
     })
   })
 }
@@ -170,9 +173,7 @@ async function setContribution() {
       }
     ]).then((response) => {
       console.log("Contribution Section Set.");
-      resolve(`## <a name="contributing"></a> Contributing
-
-${response.setContribution}`)
+      resolve(response.setContribution)
     })
   })
 }
@@ -187,9 +188,7 @@ async function setTests() {
       }
     ]).then((response) => {
       console.log("Tests Section Set.");
-      resolve(`## <a name="tests"></a> Tests
-
-${response.setTests}`)
+      resolve(response.setTests)
     })
   })
 }
@@ -208,11 +207,8 @@ async function setQuestion() {
       }
     ]).then((response) => {
       console.log("Contact Details for Question Section Set.");
-      resolve(`## <a name="questions"></a> Questions
-
-Have questions?
-* View my GitHub Profile: [https://github.com/${response.gitHub}](https://github.com/${response.gitHub})
-* Email me at: [${response.email}](mailto:${response.email})`)
+      resolve(`* View my GitHub Profile: [https://github.com/${response.gitHub}](https://github.com/${response.gitHub})`+'\n'+
+`* Email me at: [${response.email}](mailto:${response.email})`)
     })
   })
 }
@@ -272,26 +268,76 @@ function generateMarkdown(data) {
   // selectSections().then((response) => {
   //   return response;
   // });
+  let content = `# ${data.title}`;
+
+  if(data.listedSections.license) {
+    content += '\n';
+    content += data.license.badge; 
+  }
+
+  if(data.listedSections.description) {
+    content += '\n\n## Description\n\n';
+    content += data.description;
+  }
+
+  if(data.listedSections.tableOfContents) {
+    content += '\n\n';
+    content += data.contents;
+  }
+
+  if(data.listedSections.installation) {
+    content += '\n\n## <a name="installation"></a> Installation\n\n';
+    content += data.installation;
+  }
+
+  if(data.listedSections.usage) {
+    content += '\n\n## <a name="usage"></a> Usage\n\n';
+    content += data.usage;
+  }
+
+  if(data.listedSections.license) {
+    content += '\n\n## <a name="license"></a> License\n\n';
+    content += data.license.link;
+  }
+
+  if(data.listedSections.contributing) {
+    content += '\n\n## <a name="contributing"></a> Contributing\n\n';
+    content += data.contribution;
+  }
+
+  if(data.listedSections.tests) {
+    content += '\n\n## <a name="tests"></a> Tests\n\n';
+    content += data.tests;
+  }
+
+  if(data.listedSections.questions) {
+    content += '\n\n## <a name="questions"></a> Questions\n\nHave questions?\n';
+    content += data.questions;
+  }
+
+  return content;
+
+
   
-  return `# ${data.title}
+//   return `# ${data.title}
 
-${data.description}
+// ${data.description}
 
-${data.contents}
+// ${data.contents}
 
-${data.installation}
+// ${data.installation}
 
-${data.usage}
+// ${data.usage}
 
-## <a name="license"></a> License
+// ## <a name="license"></a> License
 
-${data.license.link}
+// ${data.license.link}
 
-${data.contribution}
+// ${data.contribution}
 
-${data.tests}
+// ${data.tests}
 
-${data.questions}`;
+// ${data.questions}`;
 }
 
 module.exports = {
