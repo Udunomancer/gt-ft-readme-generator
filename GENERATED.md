@@ -1,9 +1,9 @@
-# README Generator
+# Readme Generator
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 
-Application run from the command line to automatically generate ReadMe file based on user input.  Programmed in JavaScript, requires inquirer and fs packages.
+Test Description
 
 ## Table of Contents
 * [Installation](#installation)
@@ -15,11 +15,11 @@ Application run from the command line to automatically generate ReadMe file base
 
 ## <a name="installation"></a> Installation
 
-Install from the GitHub Repository and import inquirer and fs packages
+Test Installation
 
 ## <a name="usage"></a> Usage
 
-To run, enter node index.js into command line within the application directory
+Test Usage Instructions
 
 ## <a name="license"></a> License
 
@@ -27,11 +27,11 @@ To run, enter node index.js into command line within the application directory
 
 ## <a name="contributing"></a> Contributing
 
-No public contributions accepted in this repository at this time
+Test Contribution Guidelines
 
 ## <a name="tests"></a> Tests
 
-To confirm functionality, select sections to include in ReadMe and enter data.
+Test Tests
 
 ## <a name="questions"></a> Questions
 

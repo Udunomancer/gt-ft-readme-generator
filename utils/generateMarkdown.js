@@ -1,5 +1,5 @@
 //Requiring inquirer
-const inquirer = require('inquirer');
+const inquirer = require("inquirer");
 
 async function promptAndReturn() {
   //Function that calls section specific functions based on user response to sections to include
@@ -8,7 +8,7 @@ async function promptAndReturn() {
 
   //Temporary storage of saved user data
   const tempData = {
-    listedSections: {}
+    listedSections: {},
   };
 
   //Call function to set Readme/application title
@@ -18,68 +18,70 @@ async function promptAndReturn() {
   questions = await selectSections();
 
   //If Table of Contents > set it as an included seciton and set initial value
-  if(questions.indexOf('Table of Contents') >= 0) {
+  if (questions.indexOf("Table of Contents") >= 0) {
     tempData.listedSections.tableOfContents = true;
-    tempData.contents = '## Table of Contents';
+    tempData.contents = "## Table of Contents";
   }
 
   //If Description > set it as an included section and call function for user to set Description value
-  if(questions.indexOf('Description') >= 0) {
+  if (questions.indexOf("Description") >= 0) {
     tempData.listedSections.description = true;
     tempData.description = await setDescription();
   }
 
   //If Installation > set it as an included section and call function for user to set Installation value
-  if(questions.indexOf('Installation') >= 0) {
+  if (questions.indexOf("Installation") >= 0) {
     tempData.listedSections.installation = true;
     tempData.installation = await setInstallation();
-    if(tempData.contents) {
-      tempData.contents = tempData.contents + '\n* [Installation](#installation)';
+    if (tempData.contents) {
+      tempData.contents =
+        tempData.contents + "\n* [Installation](#installation)";
     }
   }
 
   //If Usage > set it as an included section and call function for user to set Usage value
-  if(questions.indexOf('Usage') >= 0) {
+  if (questions.indexOf("Usage") >= 0) {
     tempData.listedSections.usage = true;
     tempData.usage = await setUsage();
-    if(tempData.contents) {
-      tempData.contents = tempData.contents + '\n* [Usage](#usage)';
+    if (tempData.contents) {
+      tempData.contents = tempData.contents + "\n* [Usage](#usage)";
     }
   }
 
   //If License > set it as an included section and call function for user to set License values
-  if(questions.indexOf('License') >= 0) {
+  if (questions.indexOf("License") >= 0) {
     tempData.listedSections.license = true;
     tempData.license = await setLicense();
-    if(tempData.contents) {
-      tempData.contents = tempData.contents + '\n* [License](#license)';
+    if (tempData.contents) {
+      tempData.contents = tempData.contents + "\n* [License](#license)";
     }
   }
 
   //If Contributing > set it as an included section and call function for user to set Contributing value
-  if(questions.indexOf('Contributing') >= 0) {
+  if (questions.indexOf("Contributing") >= 0) {
     tempData.listedSections.contributing = true;
     tempData.contribution = await setContribution();
-    if(tempData.contents) {
-      tempData.contents = tempData.contents + '\n* [Contributing](#contributing)';
+    if (tempData.contents) {
+      tempData.contents =
+        tempData.contents + "\n* [Contributing](#contributing)";
     }
   }
 
   //If Tests > set it as an included section and call function for user to set Tests value
-  if(questions.indexOf('Tests') >= 0) {
+  if (questions.indexOf("Tests") >= 0) {
     tempData.listedSections.tests = true;
     tempData.tests = await setTests();
-    if(tempData.contents) {
-      tempData.contents = tempData.contents + '\n* [Tests](#tests)';
+    if (tempData.contents) {
+      tempData.contents = tempData.contents + "\n* [Tests](#tests)";
     }
   }
 
   //If Questions > set it as an included section and call function for user to set Questions values
-  if(questions.indexOf('Questions') >= 0) {
+  if (questions.indexOf("Questions") >= 0) {
     tempData.listedSections.questions = true;
     tempData.questions = await setQuestion();
-    if(tempData.contents) {
-        tempData.contents = tempData.contents + '\n* [Questions](#questions)';
+    if (tempData.contents) {
+      tempData.contents = tempData.contents + "\n* [Questions](#questions)";
     }
   }
 
@@ -92,17 +94,19 @@ async function setTitle() {
   //Input: n/a
   //Output: Promise with saved title from user input
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "setTitle",
-        message: "What is the title of your application?",
-      }
-    ]).then((response) => {
-      console.log("======\nApplication Title Set\n======");
-      resolve(response.setTitle);
-    });
+  return new Promise(function (resolve) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "setTitle",
+          message: "What is the title of your application?",
+        },
+      ])
+      .then((response) => {
+        console.log("======\nApplication Title Set\n======");
+        resolve(response.setTitle);
+      });
   });
 }
 
@@ -111,18 +115,20 @@ async function setDescription() {
   //Input: n/a
   //Output: Promise with saved description from user input
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "setDescription",
-        message: "Please describe your application."
-      }
-    ]).then((response) => {
-      console.log("======\nDescription Set\n======");
-      resolve(response.setDescription)
-    })
-  })
+  return new Promise(function (resolve) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "setDescription",
+          message: "Please describe your application.",
+        },
+      ])
+      .then((response) => {
+        console.log("======\nDescription Set\n======");
+        resolve(response.setDescription);
+      });
+  });
 }
 
 async function setInstallation() {
@@ -130,18 +136,21 @@ async function setInstallation() {
   //Input: n/a
   //Output: Promise with saved installation value from user input
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "setInstallation",
-        message: "Please provide installation instructions for your application."
-      }
-    ]).then((response) => {
-      console.log("======\nInstallation Section Set\n======");
-      resolve(response.setInstallation);
-    })
-  })
+  return new Promise(function (resolve) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "setInstallation",
+          message:
+            "Please provide installation instructions for your application.",
+        },
+      ])
+      .then((response) => {
+        console.log("======\nInstallation Section Set\n======");
+        resolve(response.setInstallation);
+      });
+  });
 }
 
 async function setUsage() {
@@ -149,18 +158,20 @@ async function setUsage() {
   //Input: n/a
   //Output: Promise with saved usage value from user input
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "setUsage",
-        message: "Please provide usage instrucions for your application."
-      }
-    ]).then((response) => {
-      console.log("======\nUsage Section Set.\n======");
-      resolve(response.setUsage);
-    })
-  })
+  return new Promise(function (resolve) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "setUsage",
+          message: "Please provide usage instrucions for your application.",
+        },
+      ])
+      .then((response) => {
+        console.log("======\nUsage Section Set.\n======");
+        resolve(response.setUsage);
+      });
+  });
 }
 
 async function setLicense() {
@@ -168,41 +179,43 @@ async function setLicense() {
   //Input: n/a
   //Output: Promise with object of badge and link values
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "list",
-        name: "setLicense",
-        message: "What license should your application be covered under?",
-        choices: [
-          "Boost Software License",
-          "IBM Public License Version 1.0",
-          "The MIT License"         
-        ]
-      }
-    ]).then((response) => {
-      console.log("======\nLicense Set.\n======");
-      switch (response.setLicense) {
-        case "Boost Software License": 
-          resolve({
-            badge: `[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`,
-            link: `[${response.setLicense}](https://www.boost.org/LICENSE_1_0.txt)`
-          })
-        case "IBM Public License Version 1.0":
-          resolve({
-            badge: `[![License: IPL 1.0](https://img.shields.io/badge/License-IPL%201.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)`,
-            link: `[${response.setLicense}](https://opensource.org/licenses/IPL-1.0)`
-          })
-        case "The MIT License":
-          resolve({
-            badge: `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`,
-            link: `[${response.setLicense}](https://opensource.org/licenses/MIT)`
-          })
-        default:
-          reject("Error selecting license type");
-      }
-    })
-  })
+  return new Promise(function (resolve, reject) {
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "setLicense",
+          message: "What license should your application be covered under?",
+          choices: [
+            "Boost Software License",
+            "IBM Public License Version 1.0",
+            "The MIT License",
+          ],
+        },
+      ])
+      .then((response) => {
+        console.log("======\nLicense Set.\n======");
+        switch (response.setLicense) {
+          case "Boost Software License":
+            resolve({
+              badge: `[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`,
+              link: `[${response.setLicense}](https://www.boost.org/LICENSE_1_0.txt)`,
+            });
+          case "IBM Public License Version 1.0":
+            resolve({
+              badge: `[![License: IPL 1.0](https://img.shields.io/badge/License-IPL%201.0-blue.svg)](https://opensource.org/licenses/IPL-1.0)`,
+              link: `[${response.setLicense}](https://opensource.org/licenses/IPL-1.0)`,
+            });
+          case "The MIT License":
+            resolve({
+              badge: `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`,
+              link: `[${response.setLicense}](https://opensource.org/licenses/MIT)`,
+            });
+          default:
+            reject("Error selecting license type");
+        }
+      });
+  });
 }
 
 async function setContribution() {
@@ -210,18 +223,21 @@ async function setContribution() {
   //Input: n/a
   //Output: Promise with contribution section value
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "setContribution",
-        message: "Please provide contribution guidelines for this application."
-      }
-    ]).then((response) => {
-      console.log("======\nContribution Section Set.\n======");
-      resolve(response.setContribution)
-    })
-  })
+  return new Promise(function (resolve) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "setContribution",
+          message:
+            "Please provide contribution guidelines for this application.",
+        },
+      ])
+      .then((response) => {
+        console.log("======\nContribution Section Set.\n======");
+        resolve(response.setContribution);
+      });
+  });
 }
 
 async function setTests() {
@@ -229,18 +245,21 @@ async function setTests() {
   //Input: n/a
   //Output: Promise with tests value from user
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "setTests",
-        message: "Provide any tests needed to verify functionality of your application."
-      }
-    ]).then((response) => {
-      console.log("======\nTests Section Set.\n======");
-      resolve(response.setTests)
-    })
-  })
+  return new Promise(function (resolve) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "setTests",
+          message:
+            "Provide any tests needed to verify functionality of your application.",
+        },
+      ])
+      .then((response) => {
+        console.log("======\nTests Section Set.\n======");
+        resolve(response.setTests);
+      });
+  });
 }
 
 async function setQuestion() {
@@ -248,23 +267,32 @@ async function setQuestion() {
   //Input: n/a
   //output: Promise with questions section values
 
-  return new Promise(function(resolve, reject) {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "gitHub",
-        message: "Provide your EXACT GitHub username (This will be used to create a link to your GitHub profile)."
-      },{
-        type: "input",
-        name: "email",
-        message: "Provide email to reach you by."
-      }
-    ]).then((response) => {
-      console.log("======\nContact Details for Question Section Set.\n======");
-      resolve(`* View my GitHub Profile: [https://github.com/${response.gitHub}](https://github.com/${response.gitHub})`+'\n'+
-`* Email me at: [${response.email}](mailto:${response.email})`)
-    })
-  })
+  return new Promise(function (resolve) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "gitHub",
+          message:
+            "Provide your EXACT GitHub username (This will be used to create a link to your GitHub profile).",
+        },
+        {
+          type: "input",
+          name: "email",
+          message: "Provide email to reach you by.",
+        },
+      ])
+      .then((response) => {
+        console.log(
+          "======\nContact Details for Question Section Set.\n======"
+        );
+        resolve(
+          `* View my GitHub Profile: [https://github.com/${response.gitHub}](https://github.com/${response.gitHub})` +
+            "\n" +
+            `* Email me at: [${response.email}](mailto:${response.email})`
+        );
+      });
+  });
 }
 
 async function selectSections() {
@@ -272,7 +300,7 @@ async function selectSections() {
   //Input: n/a
   //Output: Promise with an array strings that list the sections to include
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve) {
     inquirer
       .prompt([
         {
@@ -288,7 +316,7 @@ async function selectSections() {
             "License",
             "Contributing",
             "Tests",
-            "Questions"
+            "Questions",
           ],
           default: [
             "Description",
@@ -298,14 +326,15 @@ async function selectSections() {
             "License",
             "Contributing",
             "Tests",
-            "Questions"
+            "Questions",
           ],
-        }
-      ]).then((response) => {
+        },
+      ])
+      .then((response) => {
         console.log("======\nSections Selected\n======");
         resolve(response.chooseSections);
       });
-    });
+  });
 }
 
 function generateMarkdown(data) {
@@ -317,55 +346,55 @@ function generateMarkdown(data) {
   let content = `# ${data.title}`;
 
   //Add license badge to string, IF included
-  if(data.listedSections.license) {
-    content += '\n';
-    content += data.license.badge; 
+  if (data.listedSections.license) {
+    content += "\n";
+    content += data.license.badge;
   }
 
   //Add description to string, IF included
-  if(data.listedSections.description) {
-    content += '\n\n## Description\n\n';
+  if (data.listedSections.description) {
+    content += "\n\n## Description\n\n";
     content += data.description;
   }
 
   //Add table of contents to string, IF included
-  if(data.listedSections.tableOfContents) {
-    content += '\n\n';
+  if (data.listedSections.tableOfContents) {
+    content += "\n\n";
     content += data.contents;
   }
 
   //Add installation to string, IF included
-  if(data.listedSections.installation) {
+  if (data.listedSections.installation) {
     content += '\n\n## <a name="installation"></a> Installation\n\n';
     content += data.installation;
   }
 
   //Add usage to string, IF included
-  if(data.listedSections.usage) {
+  if (data.listedSections.usage) {
     content += '\n\n## <a name="usage"></a> Usage\n\n';
     content += data.usage;
   }
 
   //Add license to string, IF included
-  if(data.listedSections.license) {
+  if (data.listedSections.license) {
     content += '\n\n## <a name="license"></a> License\n\n';
     content += data.license.link;
   }
 
   //Add contributing section to string, IF included
-  if(data.listedSections.contributing) {
+  if (data.listedSections.contributing) {
     content += '\n\n## <a name="contributing"></a> Contributing\n\n';
     content += data.contribution;
   }
 
   //Add tests section to string, IF included
-  if(data.listedSections.tests) {
+  if (data.listedSections.tests) {
     content += '\n\n## <a name="tests"></a> Tests\n\n';
     content += data.tests;
   }
 
   //Add questions section to string, IF included
-  if(data.listedSections.questions) {
+  if (data.listedSections.questions) {
     content += '\n\n## <a name="questions"></a> Questions\n\nHave questions?\n';
     content += data.questions;
   }
@@ -376,5 +405,5 @@ function generateMarkdown(data) {
 
 module.exports = {
   promptAndReturn,
-  generateMarkdown
+  generateMarkdown,
 };
